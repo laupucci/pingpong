@@ -59,10 +59,11 @@ export default function Login() {
     return (
       <St>
         <form onSubmit={handleSubmit}>
-          <div>
-            <div>
+          <div className='container'>
+            <div className='inp'>
                 <label>
                   Email
+                  </label>
                   <input
                     type="email"
                     name="email"
@@ -75,11 +76,11 @@ export default function Login() {
               ) : (
                 <></>
               )}
-                </label>
               </div>
-              <div >
+              <div className='inp'>
                 <label>
                   Password
+                  </label>
                   <input
                     type="password"
                     name="password"
@@ -92,7 +93,6 @@ export default function Login() {
                     ) : (
                       <></>
                       )}
-                </label>
               </div>
             </div>
                       <button type="submit" className="btn">Log In</button>

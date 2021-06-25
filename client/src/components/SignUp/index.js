@@ -62,10 +62,11 @@ useEffect(() => {
    return (
     <St>
     <form onSubmit={handleSubmit}>
-      <div>
-        <div>
+    <div className='container'>
+    <div className='inp'>
             <label>
               Name
+              </label>
               <input
                 type="text"
                 name="name"
@@ -78,11 +79,11 @@ useEffect(() => {
               ) : (
                 <></>
               )}
-            </label>
           </div>
-          <div className="">
+          <div className='inp'>
             <label>
               Email
+              </label>
               <input
                 type="email"
                 name="email"
@@ -95,11 +96,11 @@ useEffect(() => {
               ) : (
                 <></>
               )}
-            </label>
           </div>
-          <div className="">
+          <div className='inp'>
             <label>
               Password
+              </label>
               <input
                 type="password"
                 name="password"
@@ -112,7 +113,6 @@ useEffect(() => {
               ) : (
                 <></>
               )}
-            </label>
           </div>
       <button className="btn">Sign Up</button>
           </div>

@@ -30,7 +30,6 @@ input{
   padding: 1%;
 }
 .btn{
-  margin-right: 15px;
   background-color: #1779ba;
   cursor: pointer;
   color: #D2D2D2;
