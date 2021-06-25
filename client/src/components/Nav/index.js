@@ -11,8 +11,8 @@ export default function Nav() {
   return (
     <St>
       <ul>
-        <Link to={`/`}>
-          <GiPingPongBat/>
+        <Link to='/home'>
+          <GiPingPongBat style={{width: '3vw', height: '3vw'}}/>
         </Link>
       </ul>
 
@@ -33,7 +33,7 @@ export default function Nav() {
           </>
         ) : (
           <>
-            <Link to={`/allMatches`}>
+            <Link to='/allMatches'>
               <li
                 className={
                   window.location.pathname == `/allMatches` ? "active" : "btn"
@@ -42,7 +42,7 @@ export default function Nav() {
                 All Matches
               </li>
             </Link>
-            <Link to={`/login`}>
+            <Link to='/login'>
               <li
                 className={
                   window.location.pathname === `/login` ? "active" : "btn"
@@ -51,7 +51,7 @@ export default function Nav() {
                 Log In
               </li>
             </Link>
-            <Link to={`/signup`}>
+            <Link to='/signup'>
               <li
                 className={
                   window.location.pathname === `/signup` ? "active" : "btn"

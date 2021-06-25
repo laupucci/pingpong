@@ -21,6 +21,10 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
+      state: {
+        type: DataTypes.TEXT,
+        defaultValue: null,
+      }
     },
     { timestamps: false }
   );

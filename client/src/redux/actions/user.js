@@ -13,13 +13,19 @@ export function idle() {
 export function setUser(user) {
   return { type: "SET_USER", payload: user };
 }
+export function setCreated() {
+  return { type: "CREATED", payload: false };
+}
 
 export function signUp(user) {
   return async (dispatch) => {
     dispatch(loading());
     try {
       const { data } = await axios.post("/users/signUp", user);
-      console.log(data)
+      if (data){
+        console.log(data)
+        dispatch({ type: "CREATED", payload: true });
+      }
       dispatch(idle());
     } catch (error) {
       dispatch(failed());

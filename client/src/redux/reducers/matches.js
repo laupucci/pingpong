@@ -26,6 +26,13 @@ const matchesReducer = (state = initialState, action) => {
         status: "idle",
       };
 
+      case "SET_MATCH":
+        return {
+          ...state,
+          match: {},
+          status: "idle",
+        };
+
     case "SAVE_MATCH":
       return {
         ...state,

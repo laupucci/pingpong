@@ -17,7 +17,7 @@ async function getAllMatches(req, res) {
 async function getMatchById(req, res) {
   const { id } = req.params;
   try {
-    const match = await Match.findByPk(id, { include: User });
+    const match = await Match.findByPk(id, { include: User, order: [["id", "DESC"]]});
     if (!match) {
       return res.status(404).end();
     }
@@ -55,7 +55,7 @@ async function createMatch(req, res) {
 
 async function editMatchById(req, res) {
   const idMatch = req.params.id
-  const { userOneId, pointsOne, userTwoId, pointsTwo, winDifference, winner_id, looser_id, tie } = req.body
+  const { userOneId, pointsOne, userTwoId, pointsTwo, winDifference, winner_id, looser_id, tie, state } = req.body
   try {
     const match = await Match.findByPk(idMatch);
     const userOne = await User.findByPk(userOneId);
@@ -77,13 +77,14 @@ async function editMatchById(req, res) {
         winner_id: winner_id, 
         looser_id: looser_id, 
         tie: tie,
+        state: state
       },
       {
         returning: true,
       }
     );
     matchId = match.id
-    const final = await Match.findByPk(matchId, {include: {model: User, through: ['points']}})
+    const final = await Match.findByPk(matchId, {include: {model: User, through: ['points'], order: [["id", "DESC"]]}})
     res.json(final).status(200);
   } catch (err) {
     console.error(err);
@@ -103,7 +104,7 @@ async function changePoints(req, res) {
          points: points,
         },
       });
-    const final = await Match.findByPk(matchId, {include: {model: User, through: ['points']}})
+    const final = await Match.findByPk(matchId, {include: {model: User, through: ['points'], order: [["id", "DESC"]]}})
     res.json(final).status(200);
   } catch (err) {
     console.error(err);

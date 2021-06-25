@@ -11,7 +11,7 @@ export default function (){
   const history = useHistory();
   const handleClick = () => {
     dispatch(logOut());
-    history.push("/");
+    history.push("/home");
   };
 
   return(

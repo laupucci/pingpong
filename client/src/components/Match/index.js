@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { St } from "./style";
-import { changeWins, getMatchById, editMatch } from "../../redux/actions/match";
+import { changeWins, getMatchById, editMatch, setMatch } from "../../redux/actions/match";
 
 export default function MyMatch({ match }) {
   const { matchId } = match.params;
@@ -40,9 +40,13 @@ export default function MyMatch({ match }) {
       winner_id: winner?.id ? winner?.id : null,
       looser_id: looser?.id ? looser?.id : null,
       tie: tie,
+      state: 'finish'
     };
     dispatch(editMatch(input, matchId));
-    if (user) { history.push(`/matches/${user.id}`) } else {
+    dispatch(setMatch())
+    if (user) { history.push(`/matches/${user.id}`) 
+  } else {
+    dispatch(setMatch())
       history.push('/allMatches') 
     }
   };
@@ -56,11 +60,13 @@ export default function MyMatch({ match }) {
               <div key={user?.id}>
                 <div className="player">
                   <h3>{user?.name}</h3>
+                  { theMatch?.state === 'finish' ? <></> :
                   <button
                     onClick={() => handleWin(user?.UserPoints?.points, user.id)}
                   >
                     Add win
                   </button>
+          }
                 </div>
                 <h3>Wins: {user?.UserPoints?.points}</h3>
               </div>
@@ -89,7 +95,9 @@ export default function MyMatch({ match }) {
       : (
             <></>
           )) : <></>}
+          { theMatch?.state === 'finish' ? <></> :
           <button onClick={handleClick}>Finish</button>
+      }
         </div>
       </St>
     );

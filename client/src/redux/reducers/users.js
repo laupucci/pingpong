@@ -2,6 +2,7 @@ const initialState = {
   user: undefined,
   status: "idle",
   users: [],
+  created: false
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -50,6 +51,11 @@ const usersReducer = (state = initialState, action) => {
         user: action.payload,
         status: "idle",
       };
+      case "CREATED":
+        return {
+          ...state,
+          created: action.payload,
+        };
 
     default:
       return state;

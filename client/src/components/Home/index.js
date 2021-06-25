@@ -62,7 +62,7 @@ export default function () {
     <St>
       <form onSubmit={handleSubmit}>
         <div className="container">
-        <label>Player 1 email</label>
+        <label>PLAYER 1 EMAIL</label>
         <input
           type="email"
           name="userOneEmail"
@@ -75,7 +75,7 @@ export default function () {
         ) : (
           <></>
         )}
-        <label>Player 2 email</label>
+        <label>PLAYER 2 EMAIL</label>
         <input
           type="email"
           name="userTwoEmail"
@@ -88,7 +88,7 @@ export default function () {
         ) : (
           <></>
         )}
-        <button>Continue</button>
+        <button className="btn">Continue</button>
         </div>
       </form>
     </St>

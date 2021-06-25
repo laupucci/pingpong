@@ -26,10 +26,11 @@ export default function AllMatches() {
       <St>
         {matches?.map((match) => {
           return (
-            <div key={match?.id}>
+            <div className='container' key={match?.id}>
               <h2>Number: {match?.id}</h2>
               <h3>Players</h3>
-              <ul>
+              <div className='users'>
+              <ul className='usersUl'>
                 {match?.users?.map((user) => {
                   return (
                     <div key={user?.id}>
@@ -38,11 +39,13 @@ export default function AllMatches() {
                       <li>Points: {user?.UserPoints?.points}</li>
                       {user?.id === match?.winner_id ? <h3>Winner</h3> : <></>}
                       {user?.id === match?.looser_id ? <h3>Looser</h3> : <></>}
+                      {match?.tie === true ? <h3>Tie</h3> : <></>}
                     </div>
                   );
                 })}
               </ul>
-              <h3>WinDifference: {match?.winDifference}</h3>
+              </div>
+              {match?.tie === true ? <h3>Tie</h3> : <h3>WinDifference: {match?.winDifference}</h3>}
             </div>
           );
         })}

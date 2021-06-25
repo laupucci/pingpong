@@ -6,7 +6,7 @@ import { St } from "./matchesStyle"
 
 export default function Matches({match}){
   const dispatch = useDispatch();
-  const user = useSelector(({ users }) => users.user);
+ // const user = useSelector(({ users }) => users.user);
   const userId = match.params.userId
   const matches = useSelector(({ matches }) => matches.matches);
 
@@ -18,7 +18,7 @@ export default function Matches({match}){
   if (!matches || matches.length === 0)
   return (
     <St>
-      <p>"There are not matches yet"</p>
+      <p>"You do not have matches yet"</p>
     </St>
   );
 
@@ -27,10 +27,11 @@ if (matches && matches.length > 0)
     <St>
        {matches?.map((match) => {
           return (
-            <div key={match?.id}>
+            <div className='container'  key={match?.id}>
               <h2>Number: {match?.id}</h2>
               <h3>Players</h3>
-              <ul>
+              <div className='users'>
+              <ul className='usersUl'>
                 {match?.users?.map((user) => {
                   return (
                     <div key={user?.id}>
@@ -43,6 +44,7 @@ if (matches && matches.length > 0)
                   );
                 })}
               </ul>
+              </div>
               <h3>WinDifference: {match?.winDifference}</h3>
             </div>
           );
