@@ -35,10 +35,10 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/allMatches" component={AllMatches} />
-          <Route exact path="/:matchId" component={Match}/>
-          <Route exact path="/matches/:userId" component={MyMatches}/>
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={LogIn} />
+          <Route exact path="/:matchId" component={Match}/>
+          <Route exact path="/matches/:userId" component={MyMatches}/>
         </Switch>
         <Route path="/" component={Footer} />
       </div>

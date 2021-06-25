@@ -15,4 +15,8 @@ background-color: #D2D2D2;
   color: #1779ba;
   cursor: pointer
 }
+
+ul{
+  list-style: none;
+}
 `

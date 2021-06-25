@@ -19,10 +19,10 @@ export default function Nav() {
       <ul className="right">
         {user ? (
           <>
-            <Link to={`/matches/${user.userId}`}>
+            <Link to={`/matches/${user.id}`}>
               <li
                 className={
-                  window.location.pathname === `/matches/${user.userId}`
+                  window.location.pathname === `/matches/${user.id}`
                     ? "active"
                     : "btn"
                 }

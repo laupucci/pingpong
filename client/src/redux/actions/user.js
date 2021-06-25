@@ -32,10 +32,10 @@ export function logIn(input) {
   return async (dispatch) => {
     dispatch(loading());
     try {
-      const { token } = await axios.post("users/login", input)
-      console.log(token)
-      window.localStorage.setItem("token", token);
-      const user = jwt.decode(token);
+      const { data } = await axios.post("users/login", input)
+      console.log(data)
+      window.localStorage.setItem("token", data);
+      const user = jwt.decode(data);
       dispatch(setUser(user));
     } catch (err){
       dispatch(failed());

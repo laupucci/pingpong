@@ -51,9 +51,9 @@ export default function Login() {
 
   if (user) {
     return (
-      <div>
-        <h3>Hello {user?.nombre} !</h3>
-      </div>
+      <St>
+        <h3>Hello {user?.name} !</h3>
+      </St>
     );
   } else
     return (
