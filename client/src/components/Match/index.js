@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux";
 import { St } from "./style";
 import { changeWins, getMatchById, editMatch } from "../../redux/actions/match";
@@ -6,7 +7,8 @@ import { changeWins, getMatchById, editMatch } from "../../redux/actions/match";
 export default function MyMatch({ match }) {
   const { matchId } = match.params;
   const dispatch = useDispatch();
-  //const user = useSelector(({ users }) => users.user);
+  const user = useSelector(({ users }) => users.user);
+  const history = useHistory()
   const theMatch = useSelector(({ matches }) => matches.match);
   useEffect(() => {
     dispatch(getMatchById(matchId));
@@ -40,6 +42,9 @@ export default function MyMatch({ match }) {
       tie: tie,
     };
     dispatch(editMatch(input, matchId));
+    if (user) { history.push(`/matches/${user.id}`) } else {
+      history.push('/allMatches') 
+    }
   };
 
   if (theMatch)
