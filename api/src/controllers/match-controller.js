@@ -6,11 +6,11 @@ async function getAllMatches(req, res) {
         include: { model: User, through: ["points"] },
         order: [["id", "DESC"]],
       });
-      if(!matches || matches.length === 0) {res.status(404).json("There are no matches")}
+      if(!matches || matches.length === 0) { res.status(404).json("There are no matches") }
       else { res.status(200).send(matches)}
   } catch (err) {
     console.error(err);
-    res.status(404).send(err);
+    res.status(400).send(err);
   }
 }
 
@@ -84,7 +84,6 @@ async function editMatchById(req, res) {
     );
     matchId = match.id
     const final = await Match.findByPk(matchId, {include: {model: User, through: ['points']}})
-    //await match.getUsers()
     res.json(final).status(200);
   } catch (err) {
     console.error(err);
@@ -93,11 +92,31 @@ async function editMatchById(req, res) {
 }
 
 
+async function changePoints(req, res) {
+  const matchId = req.params.id
+  const { userId, points } = req.body
+  try {
+    const match = await Match.findByPk(matchId);
+    const user = await User.findByPk(userId);
+      await match.addUser(user, {
+        through: {
+         points: points,
+        },
+      });
+    const final = await Match.findByPk(matchId, {include: {model: User, through: ['points']}})
+    res.json(final).status(200);
+  } catch (err) {
+    console.error(err);
+    res.status(404).send(err);
+  }
+}
+
 
 module.exports = {
   getAllMatches,
   createMatch,
   getMatchById,
   editMatchById,
+  changePoints,
 };
 
