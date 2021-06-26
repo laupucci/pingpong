@@ -19,7 +19,7 @@ async function getMatchById(req, res) {
   try {
     const match = await Match.findByPk(id, { include: User, order: [["id", "DESC"]]});
     if (!match) {
-      return res.status(404).end();
+      return res.status(404).send("this play doesn't exist");
     }
     return res.json(match);
   } catch (err) {
